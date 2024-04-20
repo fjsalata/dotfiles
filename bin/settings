@@ -1,0 +1,133 @@
+#!/usr/bin/env bash
+
+#
+# org.gnome.desktop.interface
+#
+gsettings set \
+  org.gnome.desktop.interface \
+  clock-show-weekday \
+  true
+
+#
+# org.gnome.desktop.wm.keybindings
+#
+gsettings set \
+  org.gnome.desktop.wm.keybindings \
+  move-to-center \
+  "['<Ctrl><Super>C']"
+
+gsettings set \
+  org.gnome.desktop.wm.keybindings \
+  switch-applications \
+  "['<Super>Tab']"
+
+gsettings set \
+  org.gnome.desktop.wm.keybindings \
+  switch-applications-backward \
+  "['<Shift><Super>Tab']"
+
+gsettings set \
+  org.gnome.desktop.wm.keybindings \
+  switch-windows \
+  "['<Alt>Tab']"
+
+gsettings set \
+  org.gnome.desktop.wm.keybindings \
+  switch-windows-backward \
+  "['<Shift><Alt>Tab']"
+
+for number in 1 2 3 4 5 6 7 8 9 ; do
+  gsettings set \
+    org.gnome.desktop.wm.keybindings \
+    switch-to-workspace-${number} \
+    "['<Super>${number}', '<Super>KP_${number}']"
+done
+
+#
+# org.gnome.mutter
+#
+gsettings set \
+  org.gnome.mutter \
+  attach-modal-dialogs \
+  false
+
+gsettings set \
+  org.gnome.mutter \
+  center-new-windows \
+  true
+
+#
+# org.gnome.settings-daemon.plugins.media-keys
+#
+gsettings set \
+  org.gnome.settings-daemon.plugins.media-keys \
+  calculator \
+  "['<Super>C']"
+
+gsettings set \
+  org.gnome.settings-daemon.plugins.media-keys \
+  control-center \
+  "['<Super>comma']"
+
+gsettings set \
+  org.gnome.settings-daemon.plugins.media-keys \
+  email \
+  "[]"
+
+gsettings set \
+  org.gnome.settings-daemon.plugins.media-keys \
+  home \
+  "['<Super>F']"
+
+gsettings set \
+  org.gnome.settings-daemon.plugins.media-keys \
+  www \
+  "['<Super>B']"
+
+#
+# org.gnome.shell.extensions.pop-shell
+#
+gsettings set \
+  org.gnome.shell.extensions.pop-shell \
+  active-hint \
+  true
+
+gsettings set \
+  org.gnome.shell.extensions.pop-shell \
+  focus-down \
+  "['<Super>Down', '<Super>j']"
+
+gsettings set \
+  org.gnome.shell.extensions.pop-shell \
+  focus-left \
+  "['<Super>Left', '<Super>h']"
+
+gsettings set \
+  org.gnome.shell.extensions.pop-shell \
+  focus-right \
+  "['<Super>Right', '<Super>l']"
+
+gsettings set \
+  org.gnome.shell.extensions.pop-shell \
+  focus-up \
+  "['<Super>Up', '<Super>k']"
+
+gsettings set \
+  org.gnome.shell.extensions.pop-shell \
+  gap-inner \
+  "uint32 7"
+
+gsettings set \
+  org.gnome.shell.extensions.pop-shell \
+  gap-outer \
+  "uint32 7"
+
+#
+# org.gnome.shell.keybindings
+#
+for number in 1 2 3 4 5 6 7 8 9 ; do
+  gsettings set \
+    org.gnome.shell.keybindings \
+    switch-to-application-${number} \
+    "[]"
+done
