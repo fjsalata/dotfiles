@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+get_os_name() {
+    source /etc/os-release
+    echo $NAME
+}
+
 #
 # org.gnome.desktop.interface
 #
@@ -87,40 +92,32 @@ gsettings set \
 #
 # org.gnome.shell.extensions.pop-shell
 #
-gsettings set \
-  org.gnome.shell.extensions.pop-shell \
-  active-hint \
-  true
+if [ "$(get_os_name)" == "Pop!_OS" ] ; then
+  gsettings set \
+    org.gnome.shell.extensions.pop-shell \
+    focus-down \
+    "['<Super>Down', '<Super>j']"
 
-gsettings set \
-  org.gnome.shell.extensions.pop-shell \
-  focus-down \
-  "['<Super>Down', '<Super>j']"
+  gsettings set \
+    org.gnome.shell.extensions.pop-shell \
+    focus-left \
+    "['<Super>Left', '<Super>h']"
 
-gsettings set \
-  org.gnome.shell.extensions.pop-shell \
-  focus-left \
-  "['<Super>Left', '<Super>h']"
+  gsettings set \
+    org.gnome.shell.extensions.pop-shell \
+    focus-right \
+    "['<Super>Right', '<Super>l']"
 
-gsettings set \
-  org.gnome.shell.extensions.pop-shell \
-  focus-right \
-  "['<Super>Right', '<Super>l']"
+  gsettings set \
+    org.gnome.shell.extensions.pop-shell \
+    focus-up \
+    "['<Super>Up', '<Super>k']"
 
-gsettings set \
-  org.gnome.shell.extensions.pop-shell \
-  focus-up \
-  "['<Super>Up', '<Super>k']"
-
-gsettings set \
-  org.gnome.shell.extensions.pop-shell \
-  gap-inner \
-  "uint32 7"
-
-gsettings set \
-  org.gnome.shell.extensions.pop-shell \
-  gap-outer \
-  "uint32 7"
+  gsettings set \
+    org.gnome.shell.extensions.pop-shell \
+    toggle-tiling \
+    "[]"
+fi
 
 #
 # org.gnome.shell.keybindings
