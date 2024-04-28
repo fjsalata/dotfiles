@@ -128,3 +128,10 @@ for number in 1 2 3 4 5 6 7 8 9 ; do
     switch-to-application-${number} \
     "[]"
 done
+
+if [ "$(get_os_name)" == "Fedora Linux" ] ; then
+  gsettings set \
+    org.gnome.software \
+    packaging-format-preference \
+    "['rpm', 'flatpak:fedora-testing', 'flatpak:fedora']"
+fi
