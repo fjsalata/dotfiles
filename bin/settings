@@ -129,6 +129,9 @@ for number in 1 2 3 4 5 6 7 8 9 ; do
     "[]"
 done
 
+#
+# org.gnome.software
+#
 if [ "$(get_os_name)" == "Fedora Linux" ] ; then
   gsettings set \
     org.gnome.software \
