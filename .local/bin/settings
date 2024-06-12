@@ -5,17 +5,60 @@ get_os_name() {
     echo $NAME
 }
 
-#
-# org.gnome.desktop.interface
-#
+########################
+# Common Configuration #
+########################
+
+gsettings set \
+  org.gnome.desktop.a11y \
+  always-show-universal-access-status \
+  true
+
+gsettings set \
+  org.gnome.desktop.input-sources \
+  xkb-options \
+  "['compose:menu', 'lv3:rwin_switch']"
+
+gsettings set \
+  org.gnome.desktop.interface \
+  clock-format \
+  "24h"
+
 gsettings set \
   org.gnome.desktop.interface \
   clock-show-weekday \
   true
 
-#
-# org.gnome.desktop.wm.keybindings
-#
+gsettings set \
+  org.gnome.desktop.interface \
+  enable-hot-corners \
+  false
+
+gsettings set \
+  org.gnome.desktop.interface \
+  show-battery-percentage \
+  true
+
+gsettings set \
+  org.gnome.desktop.peripherals.touchpad \
+  natural-scroll \
+  false
+
+gsettings set \
+  org.gnome.desktop.peripherals.touchpad \
+  tap-to-click \
+  true
+
+gsettings set \
+  org.gnome.desktop.privacy \
+  remove-old-temp-files \
+  true
+
+gsettings set \
+  org.gnome.desktop.privacy \
+  remove-old-trash-files \
+  true
+
 gsettings set \
   org.gnome.desktop.wm.keybindings \
   move-to-center \
@@ -48,9 +91,11 @@ for number in 1 2 3 4 5 6 7 8 9 ; do
     "['<Super>${number}', '<Super>KP_${number}']"
 done
 
-#
-# org.gnome.mutter
-#
+gsettings set \
+  org.gnome.desktop.wm.preferences \
+  button-layout \
+  "appmenu:close"
+
 gsettings set \
   org.gnome.mutter \
   attach-modal-dialogs \
@@ -61,9 +106,11 @@ gsettings set \
   center-new-windows \
   true
 
-#
-# org.gnome.settings-daemon.plugins.media-keys
-#
+gsettings set \
+  org.gnome.mutter \
+  edge-tiling \
+  false
+
 gsettings set \
   org.gnome.settings-daemon.plugins.media-keys \
   calculator \
@@ -89,10 +136,45 @@ gsettings set \
   www \
   "['<Super>B']"
 
-#
-# org.gnome.shell.extensions.pop-shell
-#
+gsettings set \
+  org.gnome.settings-daemon.plugins.power \
+  power-button-action \
+  'interactive'
+
+gsettings set \
+  org.gnome.settings-daemon.plugins.power \
+  sleep-inactive-ac-type \
+  'nothing'
+
+for number in 1 2 3 4 5 6 7 8 9 ; do
+  gsettings set \
+    org.gnome.shell.keybindings \
+    switch-to-application-${number} \
+    "[]"
+done
+
+#############################
+# OS Specific Configuration #
+#############################
+
+if [ "$(get_os_name)" == "Fedora Linux" ] ; then
+  gsettings set \
+    org.gnome.software \
+    packaging-format-preference \
+    "['rpm', 'flatpak:fedora-testing', 'flatpak:fedora']"
+fi
+
 if [ "$(get_os_name)" == "Pop!_OS" ] ; then
+  gsettings set \
+    org.gnome.settings-daemon.plugins.media-keys \
+    terminal \
+    "['<Super>t']"
+
+  gsettings set \
+    org.gnome.shell.extensions.dash-to-dock \
+    manualhide \
+    true
+
   gsettings set \
     org.gnome.shell.extensions.pop-shell \
     focus-down \
@@ -112,29 +194,4 @@ if [ "$(get_os_name)" == "Pop!_OS" ] ; then
     org.gnome.shell.extensions.pop-shell \
     focus-up \
     "['<Super>Up', '<Super>k']"
-
-  gsettings set \
-    org.gnome.shell.extensions.pop-shell \
-    toggle-tiling \
-    "[]"
-fi
-
-#
-# org.gnome.shell.keybindings
-#
-for number in 1 2 3 4 5 6 7 8 9 ; do
-  gsettings set \
-    org.gnome.shell.keybindings \
-    switch-to-application-${number} \
-    "[]"
-done
-
-#
-# org.gnome.software
-#
-if [ "$(get_os_name)" == "Fedora Linux" ] ; then
-  gsettings set \
-    org.gnome.software \
-    packaging-format-preference \
-    "['rpm', 'flatpak:fedora-testing', 'flatpak:fedora']"
 fi
