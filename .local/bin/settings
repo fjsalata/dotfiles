@@ -162,6 +162,11 @@ if [ "$(get_os_name)" == "Fedora Linux" ] ; then
     org.gnome.software \
     packaging-format-preference \
     "['rpm', 'flatpak:fedora-testing', 'flatpak:fedora']"
+
+  gsettings set \
+    org.gnome.software \
+    show-only-free-apps \
+    true
 fi
 
 if [ "$(get_os_name)" == "Pop!_OS" ] ; then
@@ -194,4 +199,9 @@ if [ "$(get_os_name)" == "Pop!_OS" ] ; then
     org.gnome.shell.extensions.pop-shell \
     focus-up \
     "['<Super>Up', '<Super>k']"
+
+  gsettings set \
+    org.gnome.shell.extensions.pop-shell \
+    toggle-tiling \
+    "[]"
 fi
