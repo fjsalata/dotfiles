@@ -166,7 +166,7 @@ if [ "$(get_os_name)" == "Fedora Linux" ] ; then
   gsettings set \
     org.gnome.software \
     show-only-free-apps \
-    true
+    false
 fi
 
 if [ "$(get_os_name)" == "Pop!_OS" ] ; then
